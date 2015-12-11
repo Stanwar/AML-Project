@@ -19,6 +19,8 @@
 ******************************************************************************/
 package aml;
 
+import aml.ontology.RelationshipMap;
+
 public class Test
 {
 
@@ -27,17 +29,24 @@ public class Test
 	public static void main(String[] args) throws Exception
 	{
 		//Path to input ontology files (edit manually)
-		String sourcePath = "";
-		String targetPath = "";
-		String referencePath = "";
+		String sourcePath = "src/data/ontoA.owl";
+		//String sourcePath = "src/mainbox/ontoA.owl";
+		String targetPath = "src/data/ontoB.owl";
+		//String targetPath = "src/mainbox/ontoB.owl";
+		String referencePath = "src/data/refalign.rdf";
+		//String referencePath = "src/mainbox/refalign.rdf";
 		//Path to save output alignment (edit manually, or leave blank for no evaluation)
 		String outputPath = "";
 		
 		
 		AML aml = AML.getInstance();
 		aml.openOntologies(sourcePath, targetPath);
-		aml.matchAuto();
-		
+		//aml.matchAuto();
+		aml.instanceMatcher();
+		//RelationshipMap rm = aml.getRelationshipMap();
+		//System.out.println("CHECK " + rm.getChildrenIndividuals(45211, 14));
+		//System.out.println(rm.getParentIndividuals(45211, 14));
+		//aml.instanceMatcher(sourcePath, targetPath);
 		if(!referencePath.equals(""))
 		{
 			aml.openReferenceAlignment(referencePath);
